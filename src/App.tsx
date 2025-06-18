@@ -1,26 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
+import { CarList } from './components/CarList'
+import { Container, AppBar, Toolbar, Button } from '@mui/material'
+import { CarForm } from './components/CarForm'
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Router>
+      <AppBar position="static">
+        <Toolbar>
+          <Button color="inherit" component={Link} to="/">Cars</Button>
+          <Button color="inherit" component={Link} to="/create">Create</Button>
+        </Toolbar>
+      </AppBar>
+      <Container sx={{ marginTop: 4 }}>
+        <Routes>
+          <Route path="/" element={<CarList />} />
+          <Route path="/create" element={<CarForm />} />
+        </Routes>
+      </Container>
+    </Router>
+  )
 }
-
-export default App;
